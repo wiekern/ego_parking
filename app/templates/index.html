@@ -4,17 +4,42 @@
     <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
     <style>
       .map {
-        height: 400px;
+        height: 800px;
         width: 100%;
       }
     </style>
     <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
-    <title>OpenLayers example</title>
+    <script>
+      function add_map_point(lat, lng) {
+        var vectorLayer = new ol.layer.Vector({
+          source:new ol.source.Vector({
+                features: [new ol.Feature({
+                      geometry: new ol.geom.Point(ol.proj.transform([parseFloat(lng), parseFloat(lat)], 'EPSG:4326', 'EPSG:3857')),})]
+          }),
+          style: new ol.style.Style({
+                image: new ol.style.Icon({anchor: [0.5, 0.5], anchorXUnits: "fraction", anchorYUnits: "fraction", 
+                        // src: "https://upload.wikimedia.org/wikipedia/commons/e/ec/RedDot.svg"})
+                          src: "https://img.icons8.com/color/48/000000/fiat-500.png"}) 
+                        })
+        });
+          map.addLayer(vectorLayer);
+        }
+    </script>
+    <title>Ego Parking Demo</title>
   </head>
   <body>
-    <h2>My Map</h2>
+    <h2>Demo</h2>
     <div id="map" class="map"></div>
     <script type="text/javascript">
+      
+
+      var view = new ol.View({
+          // center: ol.proj.fromLonLat([50.41, 1.82]),
+          center: [0, 0],
+          zoom: 4
+      });
+
+      
       var map = new ol.Map({
         target: 'map',
         layers: [
@@ -22,11 +47,17 @@
             source: new ol.source.OSM()
           })
         ],
-        view: new ol.View({
-          center: ol.proj.fromLonLat([37.41, 8.82]),
-          zoom: 4
-        })
+        view: view
       });
+      
+      var counts = {{locations|tojson}};
+
+      // add_map_point(50.7598133,5.9564425);  // aachen
+      counts.forEach(function(item) {
+        add_map_point(item[0], item[1]);
+      });
+
+
     </script>
   </body>
 </html>
