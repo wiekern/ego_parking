@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/css/pure-min.css" type="text/css">
+        <title>Parking Spots</title> 
+    </head>
+    <body>
+        <div>
+            {% for img in parking_img %}
+            <ul>
+                <img src="/static/target_imgs/{{ img }}" class="pure-img">
+            </ul>
+            {% endfor %}
+        </div>
+    </body>
+</html>
