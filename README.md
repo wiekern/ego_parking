@@ -1,5 +1,5 @@
 # Ego Artificial Parking
-A promising project of helping drivers to park the car. Via the hot technology of deep learning provides a optimal solution to avoid mutiple drivers drive for less parking slots, improving the efficiency of usage of parking places.
+A promising project of helping drivers to park the car. Via the hot technology of deep learning provides an optimal solution to avoid mutiple drivers drive for less parking slots, improving the efficiency of usage of parking places.
 
 ## Usage
 
